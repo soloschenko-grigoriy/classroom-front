@@ -1,0 +1,30 @@
+{
+  "name": "classroom-front",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Simple TODO list",
+  "main": "index.html",
+  "scripts": {
+    "start": "gulp",
+    "build": "gulp build",
+    "test": "test"
+  },
+  "author": "Gregory Soloshchenko",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-preset-latest": "^6.16.0",
+    "babelify": "^7.3.0",
+    "browserify": "^13.1.1",
+    "eslint": "3.12.2",
+    "gulp": "^3.9.1",
+    "gulp-connect": "^5.0.0",
+    "gulp-sass": "3.0.0",
+    "gulp-sourcemaps": "^2.2.0",
+    "gulp-uglify": "^2.0.0",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.7.0"
+  },
+  "dependencies": {}
+}
