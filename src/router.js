@@ -4,6 +4,7 @@ import Login from "./auth/login";
 import Header from "./header/header";
 import Courses from "./quiz/courses";
 import Lessons from "./quiz/lessons";
+import Question from "./quiz/question";
 import Config from './config';
 
 var Router = new Navigo(null, false);
@@ -23,11 +24,27 @@ Router.on({
         new Header();
         new Courses();
     },
-    '/lessons/:id': (params) => { 
+    '/quiz':  () => { 
+        if(!isAuth()){return;}
         new Header();
-        new Lessons({
-            course: params.id
-        });
+        new Courses();
+    },
+    '/quiz/course':  () => { 
+        if(!isAuth()){return;}
+        new Header();
+        new Courses();
+    },
+    '/quiz/course/:course': (params) => { 
+        new Header();
+        new Lessons(params);
+    },
+    '/quiz/course/:course/lesson': (params) => { 
+        new Header();
+        new Lessons(params);
+    },
+    '/quiz/course/:course/lesson/:lesson': (params) => { 
+        new Header();
+        new Question(params);
     },
      '/login': () => { 
         if(Cookie.get('keycode')){

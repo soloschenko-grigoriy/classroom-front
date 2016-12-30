@@ -66,12 +66,12 @@ export default class Courses{
             }
             this.$el.find('.row').last().append(
                 `<div class="col-xs-6 col-md-4" >
-                    <div href="/lessons/${item.id}" data-navigo class="funny-boxes float-shadow text-center">
+                    <div href="/quiz/course/${item.id}" data-navigo class="funny-boxes float-shadow text-center">
                         <span class="funny-boxes-icon">${item.icon}</span>
                         <div class="funny-boxes-text">
                             <h4>${item.name}</h4>
                             <p>${item.description}</p>
-                            <a href="/lessons/${item.id}" class="btn btn-rj">Выбрать</a>
+                            <a href="/quiz/course/${item.id}" class="btn btn-rj">Выбрать</a>
                         </div>
                     </div>
                 </div>`
