@@ -1,11 +1,7 @@
 @import "./todo/component.scss";
-
+@import "./auth/login.scss";
 body { padding-bottom: 70px; }
-.form-signin {
-    max-width: 330px;
-    padding: 15px;
-    margin: 0 auto;
-}
+
 .mt{
   margin-top: 10px;
 }
@@ -187,4 +183,12 @@ pre {
   background: none;
   border: none;
   border-radius: 0;
+}
+
+.has-error .form-control {
+    border-color: #f06060;
+    color: #f06060;
+}
+.has-error small{
+  color: #f06060;
 }

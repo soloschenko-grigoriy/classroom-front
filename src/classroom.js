@@ -1,3 +1,4 @@
-import TodoComponent from './todo/component.js';
+import Router from './router/router.js';
 
-window.TodoComponent = TodoComponent;
+
+Router.resolve();

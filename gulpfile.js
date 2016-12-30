@@ -8,6 +8,7 @@ var babel = require('babelify');
 var connect = require('gulp-connect');
 var uglify = require('gulp-uglify');
 var sass = require('gulp-sass');
+var historyApiFallback = require('connect-history-api-fallback');
 
 function compile(watch) {
   var bundler = watchify(browserify('./src/classroom.js', { debug: true }).transform(babel));
@@ -54,8 +55,11 @@ function sassWatch(){
 
 function doConnect(){
   connect.server({
-    root: './',
-    livereload: true
+    root: __dirname,
+    livereload: true,
+    middleware: function(connect, opt) {
+      return [ historyApiFallback() ];
+    }
   });
 }
 
