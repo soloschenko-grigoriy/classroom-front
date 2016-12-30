@@ -1,17 +1,29 @@
 import Config from '../config';
 import Cookie from './cookie';
-
-import sha1 from '../../node_modules/sha1/sha1';
+var crypto = require('crypto');
 
 /**
  * Login class
  */
-export class Login{
+export default class Login{
 
     /**
      * Construcor
      */
     constructor(){
+        this.selector = 'login';
+
+        this.template = `
+            <div class="container">
+                <form class="form-signin" method="post" action="login">
+                    <h2 class="form-signin-heading">Авторизация</h2>
+                    <input name="email" type="email" class="form-control" placeholder="Email адрес" required="" autofocus=""><br>
+                    <input name="password" type="password" class="form-control" placeholder="Пароль" required="">
+                    <br>
+                    <button class="btn btn-lg btn-primary btn-block btn-rj" type="submit">Войти</button>
+                    <small class="text-center hidden">Извините, произошла ошибка</small>
+                </form>
+            </div>`;
         this.prepare().addListeners();
 	}
 
@@ -84,10 +96,31 @@ export class Login{
             return this.onError();
         }
         var user = r[0];
+        var timstamp = Date.now();
+        var shasum = crypto.createHash('sha1');
+        shasum.update(user.id+user.email+timstamp+user.name+'gs-classes-classroom+keycode');
 
-        Cookie.set('keycode', sha1(user.id+user.email+user.name+Date.now()+'gs-classes-classroom+keycode'), { expires: 60 * 60 * 24 * 30 * 3});
+        Cookie.set('keycode', shasum.digest('hex'), { expires: 60 * 60 * 24 * 30 * 3});
         
-        window.location.reload();
+        $.ajax({
+            url: Config.api + '/users/' + user.id,
+            method:'put',
+            data: JSON.stringify({
+                keycode: timstamp
+            }),
+            dataType:'json',
+            contentType:'application/json',
+            success: function(){
+                Cookie.set('user-name', user.name, { expires: 60 * 60 * 24 * 30 * 3});
+                Cookie.set('user-email', user.email, { expires: 60 * 60 * 24 * 30 * 3});
+                Cookie.set('user-id', user.id, { expires: 60 * 60 * 24 * 30 * 3});
+
+                window.location.reload();
+            },
+            error: this.onError.bind(this),
+        });
+
+        
 
         return this;
     }
@@ -101,6 +134,7 @@ export class Login{
      * @returns Login
      */
     onError(r){
+        Cookie.remove('keycode');
         this.$el.find('.form-signin').addClass('has-error');
         this.$el.find('small').removeClass('hidden');
 
@@ -115,20 +149,6 @@ export class Login{
      * @returns Login
      */
     prepare(){
-        this.selector = 'login-component';
-
-        this.template = `
-            <div class="container">
-                <form class="form-signin" method="post" action="login">
-                    <h2 class="form-signin-heading">Авторизация</h2>
-                    <input name="email" type="email" class="form-control" placeholder="Email адрес" required="" autofocus=""><br>
-                    <input name="password" type="password" class="form-control" placeholder="Пароль" required="">
-                    <br>
-                    <button class="btn btn-lg btn-primary btn-block btn-rj" type="submit">Войти</button>
-                    <small class="text-center hidden">Извините, произошла ошибка</small>
-                </form>
-            </div>`;
-
 		this.$el = $(this.selector);
         
 		if(!this.$el.length){

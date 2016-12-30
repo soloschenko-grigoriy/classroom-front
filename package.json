@@ -28,7 +28,6 @@
     "watchify": "^3.7.0"
   },
   "dependencies": {
-    "navigo": "4.0.0",
-    "sha1": "1.1.1"
+    "navigo": "4.0.0"
   }
 }
