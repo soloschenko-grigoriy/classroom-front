@@ -1,4 +1,5 @@
 import Cookie from '../auth/cookie';
+import Router from '../router';
 
 /**
  * Header class
@@ -20,21 +21,21 @@ export default class Header{
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="/">GS</a>
+                    <a class="navbar-brand" href="/" data-navigo>GS</a>
                 </div>
                 <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                    <li class="active"><a href="/">Quiz</a></li>
-                    <li><a href="/homework">Homework</a></li>
+                    <li class="active"><a href="/" data-navigo>Quiz</a></li>
+                    <li><a href="/homework" data-navigo>Homework</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><user-name>${Cookie.get('user-name')}</user-name> <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                        <li><a href="/settings">Настройки</a></li>
-                        <li><a href="/scores">Статистика</a></li>
+                        <li><a href="/settings" data-navigo>Настройки</a></li>
+                        <li><a href="/scores" data-navigo>Статистика</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="/logout">Выйти</a></li>
+                        <li><a href="/logout" data-navigo>Выйти</a></li>
                         </ul>
                     </li>
                     </ul>
@@ -71,7 +72,9 @@ export default class Header{
 		}
 
         this.$el.html(this.template);
-
+        
+        Router.updatePageLinks();
+        
 		return this;
 	}
 }
