@@ -33,7 +33,7 @@ export default class Courses{
             </div>`;
 
         this.prepare().loadCourses().addListeners();
-	}
+    }
 
     /**
      * Add event listeners
@@ -43,8 +43,8 @@ export default class Courses{
      * @returns Login
      */
     addListeners(){
-		return this;
-	}   
+        return this;
+    }   
 
     loadCourses(){
         $.ajax({
@@ -87,7 +87,7 @@ export default class Courses{
     }
 
     onError(e){
-        console.log('e');
+        console.log(e);
     }
     /**
      * Prepare template, elemnt etc
@@ -97,15 +97,21 @@ export default class Courses{
      * @returns Login
      */
     prepare(){
-		this.$el = $(this.selector);
+        this.$el = $(this.selector);
         this.$el.empty();
 
-		if(!this.$el.length){
-			throw new Error(`Element specified by selector "${this.selector}" not found in DOM`);
-		}
+        if(!this.$el.length){
+            throw new Error(`Element specified by selector "${this.selector}" not found in DOM`);
+        }
 
         this.$el.html(this.template);
 
-		return this;
-	}
+        return this;
+    }
+
+    destroy(){
+        $(this.selector).empty();
+
+        return this;
+    }
 }

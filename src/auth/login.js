@@ -25,7 +25,7 @@ export default class Login{
                 </form>
             </div>`;
         this.prepare().addListeners();
-	}
+    }
 
     /**
      * Add event listeners
@@ -38,8 +38,8 @@ export default class Login{
         this.$el.find('form').on('submit', this.onSubmit.bind(this));
         this.$el.find('input').on('keydown', this.onKeydown.bind(this));
 
-		return this;
-	}
+        return this;
+    }
 
     /**
      * onKeydown event handler
@@ -49,7 +49,7 @@ export default class Login{
      * @param {Event} e
      * @returns Login
      */
-    onKeydown(e){
+    onKeydown(){
         this.$el.find('.form-signin').removeClass('has-error');
         this.$el.find('small').addClass('hidden');
 
@@ -133,8 +133,9 @@ export default class Login{
      * @param {Event} e
      * @returns Login
      */
-    onError(r){
+    onError(){
         Cookie.remove('keycode');
+        
         this.$el.find('.form-signin').addClass('has-error');
         this.$el.find('small').removeClass('hidden');
 
@@ -149,14 +150,22 @@ export default class Login{
      * @returns Login
      */
     prepare(){
-		this.$el = $(this.selector);
+        this.$el = $(this.selector);
         
-		if(!this.$el.length){
-			throw new Error(`Element specified by selector "${this.selector}" not found in DOM`);
-		}
+        if(!this.$el.length){
+            throw new Error(`Element specified by selector "${this.selector}" not found in DOM`);
+        }
 
         this.$el.html(this.template);
 
-		return this;
-	}
+        return this;
+    }
+
+    destroy(){
+        this.$el.find('form').off();
+        this.$el.find('input').off();
+        $(this.selector).empty();
+
+        return this;
+    }
 }

@@ -20,7 +20,7 @@ export default class Lessons{
                     <div class="col-md-12">
                         <div class="section-title text-center">
                             <h2 class="main-title">Выберите урок</h2>
-                            <h3 class="sub-title">Знания по которому хотите проверить:</h3>
+                            <h3 class="sub-title">Который Вы сейчас проходите:</h3>
                             <span class="section-line"></span>
                         </div>
                     </div>
@@ -30,7 +30,7 @@ export default class Lessons{
         `;
 
         this.prepare().loadLessons(params.course).addListeners();
-	}
+    }
 
     /**
      * Add event listeners
@@ -40,8 +40,8 @@ export default class Lessons{
      * @returns Login
      */
     addListeners(){
-		return this;
-	}   
+        return this;
+    }   
 
     loadLessons(course){
         $.ajax({
@@ -61,17 +61,34 @@ export default class Lessons{
 
     onLoad(response){
         response.forEach((item) => {
-            if(item.disabled){
-                return;
+            if(item.notest && item.nohw){
+                return this;
             }
+
+            if(!item.active){
+                return this;
+            }
+
+            let test = `<a href="/quiz/course/${item.course}/lesson/${item.id}" class="btn btn-rj">Начать тест</a>`;
+            let hw = `<a href="/homework/course/${item.course}/lesson/${item.id}" class="btn btn-rj">Домашка</a>`;
+
+            if(item.notest){
+                test = '';
+            }
+
+            if(item.nohw){
+                hw = '';
+            }
+
+            
             this.$el.find('.row').last().append(
                 `<div class="col-xs-12 col-sm-6 col-md-4 mbx3 pbx3">
-                  <div href="/quiz/course/${item.course}/lesson/${item.id}" data-navigo class="funny-boxes float-shadow text-center">
+                  <div class="funny-boxes outline-inward text-center">
                     <span class="funny-boxes-icon">${item.icon}</span>
                     <div class="funny-boxes-text">
                       <h4>${item.name}</h4>
                       <p>${item.description}</p>
-                      <a href="/quiz/course/${item.course}/lesson/${item.id}" class="btn btn-rj">Начать тест</a>
+                      ${test} ${hw}
                     </div>
                   </div>
                 </div>`
@@ -87,7 +104,7 @@ export default class Lessons{
     }
 
     onError(e){
-        console.log('e');
+        console.log(e);
     }
     /**
      * Prepare template, elemnt etc
@@ -97,15 +114,21 @@ export default class Lessons{
      * @returns Login
      */
     prepare(){
-		this.$el = $(this.selector);
+        this.$el = $(this.selector);
         this.$el.empty();
 
-		if(!this.$el.length){
-			throw new Error(`Element specified by selector "${this.selector}" not found in DOM`);
-		}
+        if(!this.$el.length){
+            throw new Error(`Element specified by selector "${this.selector}" not found in DOM`);
+        }
 
         this.$el.html(this.template);
 
-		return this;
-	}
+        return this;
+    }
+
+    destroy(){
+        $(this.selector).empty();
+
+        return this;
+    }
 }

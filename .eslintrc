@@ -1,6 +1,8 @@
 {
     "env": {
         "browser": true,
+        "jquery": true,
+        "node": true,
         "es6": true
     },
     "extends": "eslint:recommended",
@@ -10,8 +12,7 @@
     "rules": {
         "no-console": "off",
         "indent": [
-            "error",
-            "space"
+            "error"
         ],
         "linebreak-style": [
             "error",

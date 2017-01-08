@@ -1795,10 +1795,8 @@ footer.footer {
 /*---------------------------------------------------------------------*/
 /*  8. FUNNY BOXES
 /*---------------------------------------------------------------------*/
-.funny-boxes:hover {
-  cursor: pointer;
-}
-.funny-boxes:hover > .funny-boxes-icon {
+.funny-boxes:hover > .funny-boxes-icon,
+.funny-boxes.active > .funny-boxes-icon {
   color: #fff;
   background-color: #1abc9c;
 }
@@ -1940,7 +1938,8 @@ footer.footer {
 /*---------------------------------------------------------------------*/
 /*  8.3. FUNNY BOXES HOVER EFFECT 3 - OUTLINE INWARD
 /*---------------------------------------------------------------------*/
-.funny-boxes.outline-inward:hover > .funny-boxes-icon:before {
+.funny-boxes.outline-inward:hover > .funny-boxes-icon:before,
+.funny-boxes.outline-inward.active > .funny-boxes-icon:before {
   top: -8px;
   right: -8px;
   bottom: -8px;
@@ -3379,7 +3378,8 @@ footer.footer {
 /*---------------------------------------------------------------------*/
 /*  8. FUNNY BOXES
 /*---------------------------------------------------------------------*/
-.funny-boxes:hover > .funny-boxes-icon {
+.funny-boxes:hover > .funny-boxes-icon,
+.funny-boxes.active > .funny-boxes-icon {
   background-color: #f06060;
 }
 .funny-boxes > .funny-boxes-icon {
