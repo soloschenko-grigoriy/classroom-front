@@ -49,7 +49,8 @@ export default class Lessons{
             method:'get',
             dataType:'json',
             data:{
-                course: course
+                course: course,
+                sort:'position'
             },
             contentType:'application/json',
             success: this.onLoad.bind(this),
