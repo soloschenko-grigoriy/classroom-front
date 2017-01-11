@@ -90,14 +90,6 @@ Router.on({
         }
         content = new Login();
     },
-    '/settings':  () => { 
-        if(!isAuth()){return;}
-        if(!header){ 
-            header = new Header();
-        }
-        beforeEach('/settings');
-        content = new Settings();
-    },
     '/statistics':  () => { 
         if(!isAuth()){return;}
         if(!header){ 

@@ -65,7 +65,7 @@ export default class Courses{
                 return;
             }
             this.$el.find('.row').last().append(
-                `<div class="col-xs-6 col-md-4" >
+                `<div class="col-xs-6 col-md-4 mbx3" >
                     <div href="/quiz/course/${item.id}" data-navigo class="funny-boxes float-shadow text-center">
                         <span class="funny-boxes-icon">${item.icon}</span>
                         <div class="funny-boxes-text">
