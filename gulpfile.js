@@ -11,56 +11,56 @@ var sass = require('gulp-sass');
 var historyApiFallback = require('connect-history-api-fallback');
 
 function compile(watch) {
-  var bundler = watchify(browserify('./src/classroom.js', { debug: true }).transform(babel));
+    var bundler = watchify(browserify('./src/classroom.js', { debug: true }).transform(babel));
 
-  function rebundle() {
-    bundler.bundle()
-      .on('error', function(err) { console.error(err); this.emit('end'); })
-      .pipe(source('classroom.js'))
-      .pipe(buffer())
-      .pipe(sourcemaps.init({ loadMaps: true }))
-      .pipe(uglify())
-      .pipe(sourcemaps.write('./'))
-      .pipe(gulp.dest('./dist'))
-      .pipe(connect.reload());
-  }
+    function rebundle() {
+        bundler.bundle()
+        .on('error', function(err) { console.error(err); this.emit('end'); })
+        .pipe(source('classroom.js'))
+        .pipe(buffer())
+        .pipe(sourcemaps.init({ loadMaps: true }))
+        .pipe(uglify())
+        .pipe(sourcemaps.write('./'))
+        .pipe(gulp.dest('./dist'))
+        .pipe(connect.reload());
+    }
 
-  if (watch) {
-    bundler.on('update', function() {
-      console.log('-> bundling...');
-      rebundle();
-    });
-  }
+    if (watch) {
+        bundler.on('update', function() {
+            console.log('-> bundling...');
+            rebundle();
+        });
+    }
 
-  rebundle();
+    rebundle();
 }
 
 function watch() {
-  return compile(true);
+    return compile(true);
 }
 
 function doSass(){
-  return gulp.src('./src/classroom.scss')
-    .pipe(sourcemaps.init())
-    .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
-    .pipe(sourcemaps.write('./'))
-    .pipe(gulp.dest('./dist'))
-    .pipe(connect.reload());
+    return gulp.src('./src/classroom.scss')
+        .pipe(sourcemaps.init())
+        .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
+        .pipe(sourcemaps.write('./'))
+        .pipe(gulp.dest('./dist'))
+        .pipe(connect.reload());
 }
 
 function sassWatch(){
-  doSass();
-  gulp.watch('./src/**/*.scss', ['sass']);
+    doSass();
+    gulp.watch('./src/**/*.scss', ['sass']);
 }
 
 function doConnect(){
-  connect.server({
-    root: __dirname,
-    livereload: true,
-    middleware: function(connect, opt) {
-      return [ historyApiFallback() ];
-    }
-  });
+    connect.server({
+        root: __dirname,
+        livereload: true,
+        middleware: function() {
+            return [ historyApiFallback() ];
+        }
+    });
 }
 
 function build(){
