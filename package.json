@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node node_modules/gulp/bin/gulp.js",
     "build": "node node_modules/gulp/bin/gulp.js build",
-    "test": "test"
+    "test": "mocha --recursive"
   },
   "author": "Gregory Soloshchenko",
   "license": "ISC",
@@ -23,6 +23,7 @@
     "gulp-sass": "3.0.0",
     "gulp-sourcemaps": "^2.2.0",
     "gulp-uglify": "^2.0.0",
+    "mocha": "3.2.0",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.7.0"
