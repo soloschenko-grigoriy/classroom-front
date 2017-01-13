@@ -269,10 +269,10 @@ export default class Question{
 
         $('.pie-chart').easyPieChart({
             scaleColor: false,
-            lineCap: 'butt',
+            lineCap: 'round',
             lineWidth: 10,
             size: 210,
-            animate: 2000,
+            animate: 1000,
             easing: 'easeOutBounce',
             onStep: function(from, to, percent) {
                 $(this.el).find('.percent').text(Math.round(percent) + '%');
