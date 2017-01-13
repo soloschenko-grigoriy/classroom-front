@@ -3,5 +3,11 @@
 ## Install ##
 npm install
 
+## Start ##
+npm start
+
 ## Build ##
-npm build
+npm run build
+
+## Test ##
+npm test

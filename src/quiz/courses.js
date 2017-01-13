@@ -21,7 +21,7 @@ export default class Courses{
                         <div class="section-title text-center">
                             <h2 class="main-title">Выберите курс</h2>
 
-                            <h3 class="sub-title">Который Вы сейчас проходите111:</h3>
+                            <h3 class="sub-title">Который Вы сейчас проходите:</h3>
 
                             <span class="section-line"></span>
                         </div>
