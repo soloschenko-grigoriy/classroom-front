@@ -156,7 +156,10 @@ export default class Question{
 
         this.$el.find('[question] code').each(function(i, block){
             $(this).text(question['answer' + ++i]);
-            window.hljs.highlightBlock(block);
+            if(!$(this).hasClass('normal')){
+                window.hljs.highlightBlock(block);
+            }
+            
         });
         
         for(var i = 1; i <= this.questions.length; i++){

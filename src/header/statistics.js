@@ -44,7 +44,8 @@ export default class Statistics{
             dataType:'json',
             data:{
                 user: Cookie.get('user-id'),
-                populate:['lesson', 'lesson.course']
+                populate:['lesson', 'lesson.course'],
+                limit:1000
             },
             contentType:'application/json',
             success: this.onLoad.bind(this),
