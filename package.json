@@ -1,13 +1,16 @@
 {
   "name": "classroom-front",
   "private": true,
-  "version": "0.0.1",
-  "description": "Simple TODO list",
+  "version": "1.0.0",
+  "description": "Classroom fron part",
   "main": "index.html",
   "scripts": {
     "start": "node node_modules/gulp/bin/gulp.js",
     "build": "node node_modules/gulp/bin/gulp.js build",
     "test": "mocha --recursive"
+  },
+  "engines": {
+    "node": "6.9.2"
   },
   "author": "Gregory Soloshchenko",
   "license": "ISC",
