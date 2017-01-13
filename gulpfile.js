@@ -63,10 +63,24 @@ function doConnect(){
   });
 }
 
+function build(){
+    doSass();
+
+    browserify('./src/classroom.js', { debug: false }).transform(babel)
+    .bundle()
+      .on('error', function(err) { console.error(err); this.emit('end'); })
+      .pipe(source('classroom.js'))
+      .pipe(buffer())
+      .pipe(sourcemaps.init({ loadMaps: true }))
+      .pipe(uglify())
+      .pipe(sourcemaps.write('./'))
+      .pipe(gulp.dest('./dist'));
+}
+
 gulp.task('connect', function() { doConnect(); });
 gulp.task('sass:watch', function () { sassWatch(); });
 gulp.task('sass', function(){ doSass(); });
-gulp.task('build', function() { doSass(); compile(); });
+gulp.task('build', function() { build(); });
 gulp.task('watch', function() { sassWatch(); watch(); });
 
 gulp.task('default', ['connect', 'watch']);
