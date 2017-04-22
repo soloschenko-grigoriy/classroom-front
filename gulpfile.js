@@ -21,7 +21,7 @@ function compile(watch) {
         .pipe(sourcemaps.init({ loadMaps: true }))
         .pipe(uglify())
         .pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest('./dist'))
+        .pipe(gulp.dest('./public/dist'))
         .pipe(connect.reload());
     }
 
@@ -44,7 +44,7 @@ function doSass(){
         .pipe(sourcemaps.init())
         .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
         .pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest('./dist'))
+        .pipe(gulp.dest('./public/dist'))
         .pipe(connect.reload());
 }
 
@@ -74,7 +74,7 @@ function build(){
       .pipe(sourcemaps.init({ loadMaps: true }))
       .pipe(uglify())
       .pipe(sourcemaps.write('./'))
-      .pipe(gulp.dest('./dist'));
+      .pipe(gulp.dest('./public/dist'));
 }
 
 gulp.task('connect', function() { doConnect(); });
