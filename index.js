@@ -12,9 +12,35 @@ app.get('/', function(req, res) {
     res.render('index');
 });
 
-app.get('/*', function(req, res) {
+app.get('/quiz', function(req, res) {
     res.render('index');
 });
+
+app.get('/quiz/*', function(req, res) {
+    res.render('index');
+});
+
+app.get('/login', function(req, res) {
+    res.render('index');
+});
+
+app.get('/logout', function(req, res) {
+    res.render('index');
+});
+
+app.get('/statistics', function(req, res) {
+    res.render('index');
+});
+
+app.get('/homework', function(req, res) {
+    res.render('index');
+});
+
+app.get('/homework/*', function(req, res) {
+    res.render('index');
+});
+
+
 
 app.listen(app.get('port'), function() {
     console.log('Node app is running on port', app.get('port'));
