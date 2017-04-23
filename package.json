@@ -6,6 +6,7 @@
   "main": "index.html",
   "scripts": {
     "start": "node index.js",
+    "postinstall": "gulp build",
     "build": "node node_modules/gulp/bin/gulp.js build",
     "test": "mocha --recursive"
   },
@@ -15,6 +16,9 @@
   "author": "Gregory Soloshchenko",
   "license": "ISC",
   "devDependencies": {
+    
+  },
+  "dependencies": {
     "babel-cli": "^6.18.0",
     "babel-preset-latest": "^6.16.0",
     "babelify": "^7.3.0",
@@ -29,9 +33,7 @@
     "mocha": "3.2.0",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
-    "watchify": "^3.7.0"
-  },
-  "dependencies": {
+    "watchify": "^3.7.0",
     "ejs": "2.5.6",
     "express": "4.15.2",
     "navigo": "4.0.0",
