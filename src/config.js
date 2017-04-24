@@ -1,3 +1,3 @@
 export default {
-    api: 'http://localhost:9000/api'
-}
+    api: 'https://classroom-backend.herokuapp.com/api'
+};
